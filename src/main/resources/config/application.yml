@@ -2,10 +2,8 @@ server:
     port: 8090
 
 spring:
-    jersey:
-        type: filter
     jpa:
-        openInView: false
+        openInView: true
         show_sql: true
         generate-ddl: false
         hibernate:

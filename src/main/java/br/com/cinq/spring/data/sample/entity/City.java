@@ -1,15 +1,22 @@
 package br.com.cinq.spring.data.sample.entity;
 
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
-@Table(name = "CITY")
-public class City {
+public class City implements Serializable{
 
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,7 +26,9 @@ public class City {
 	@Column(name = "NAME")
 	private String name;
 	
-	@Column(name = "CONTRY_ID")
+	@ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+	@JoinColumn(name = "country_id")
+	@JsonProperty("country")
 	private Country country;
 
 	public Integer getId() {
