@@ -26,6 +26,7 @@ public class City implements Serializable{
 	@Column(name = "NAME")
 	private String name;
 	
+	@ManyToOne(fetch = FetchType.EAGER,cascade = {CascadeType.PERSIST})
 	@JoinColumn(name = "country_id")
 	@JsonProperty("country")
 	private Country country;
