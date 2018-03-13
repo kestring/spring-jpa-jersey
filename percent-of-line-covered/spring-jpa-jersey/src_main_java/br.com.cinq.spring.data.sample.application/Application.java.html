@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Application.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">spring-jpa-jersey (13/03/2018 00:15:51)</a> &gt; <a href="../../index.html" class="el_group">spring-jpa-jersey</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">br.com.cinq.spring.data.sample.application</a> &gt; <span class="el_source">Application.java</span></div><h1>Application.java</h1><pre class="source lang-java linenums">package br.com.cinq.spring.data.sample.application;
+
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+/**
+ * Greeting Service.
+ */
+@SpringBootApplication(exclude = {SecurityAutoConfiguration.class })
+@ComponentScan(&quot;br.com.cinq.spring.data.sample&quot;)
+@EntityScan(&quot;br.com.cinq.spring.data.sample.entity&quot;)
+@EnableJpaRepositories(&quot;br.com.cinq.spring.data.sample.repository&quot;)
+@EnableTransactionManagement
+<span class="fc" id="L20">public class Application extends SpringBootServletInitializer {</span>
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+<span class="nc" id="L24">        return application.sources(Application.class);</span>
+    }
+
+    public static void main(String[] args) {
+<span class="nc" id="L28">        new Application().configure(new SpringApplicationBuilder(Application.class)).run(args);</span>
+<span class="nc" id="L29">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>spring-jpa-jersey (13/03/2018 00:15:51)</div></body></html>

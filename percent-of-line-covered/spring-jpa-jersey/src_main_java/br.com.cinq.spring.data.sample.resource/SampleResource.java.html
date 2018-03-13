@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>SampleResource.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">spring-jpa-jersey (13/03/2018 00:15:51)</a> &gt; <a href="../../index.html" class="el_group">spring-jpa-jersey</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">br.com.cinq.spring.data.sample.resource</a> &gt; <span class="el_source">SampleResource.java</span></div><h1>SampleResource.java</h1><pre class="source lang-java linenums">package br.com.cinq.spring.data.sample.resource;
+
+import java.util.List;
+
+import javax.ws.rs.DefaultValue;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import br.com.cinq.spring.data.sample.entity.City;
+import br.com.cinq.spring.data.sample.repository.CityRepository;
+
+@Path(&quot;/cities&quot;)
+<span class="fc" id="L19">public class SampleResource {</span>
+
+	@Autowired
+	private CityRepository cityRepository;
+	
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getCitiesByCountryName(@QueryParam(&quot;country&quot;) @DefaultValue(&quot;&quot;) String countryName) {
+<span class="fc" id="L28">		List&lt;City&gt; listCities = this.cityRepository.findByCountryNameLike(countryName);</span>
+<span class="fc" id="L29">		return Response.ok().entity(listCities).build();</span>
+//		return Response.status(Response.Status.NOT_FOUND).build();
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path(&quot;/city/{id}&quot;)
+	public Response getCityById(@QueryParam(&quot;id&quot;) @DefaultValue(&quot;&quot;) String countryName) {
+<span class="nc" id="L37">		List&lt;City&gt; listCities = this.cityRepository.findByCountryNameLike(countryName);</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">		if(listCities != null) {</span>
+<span class="nc" id="L39">			return Response.ok().entity(listCities).build();</span>
+		}
+<span class="nc" id="L41">		return Response.status(Response.Status.NOT_FOUND).build();</span>
+	}
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>spring-jpa-jersey (13/03/2018 00:15:51)</div></body></html>

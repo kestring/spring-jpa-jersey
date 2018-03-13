@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>City.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">spring-jpa-jersey (13/03/2018 00:15:51)</a> &gt; <a href="../../index.html" class="el_group">spring-jpa-jersey</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">br.com.cinq.spring.data.sample.entity</a> &gt; <span class="el_source">City.java</span></div><h1>City.java</h1><pre class="source lang-java linenums">package br.com.cinq.spring.data.sample.entity;
+
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@Entity
+<span class="fc" id="L19">public class City implements Serializable{</span>
+
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name =&quot;ID&quot;)
+	private Integer id;
+	
+	@Column(name = &quot;NAME&quot;)
+	private String name;
+	
+	@ManyToOne(fetch = FetchType.EAGER,cascade = {CascadeType.PERSIST})
+	@JoinColumn(name = &quot;country_id&quot;)
+	@JsonProperty(&quot;country&quot;)
+	private Country country;
+
+	public Integer getId() {
+<span class="fc" id="L35">		return id;</span>
+	}
+
+	public void setId(Integer id) {
+<span class="fc" id="L39">		this.id = id;</span>
+<span class="fc" id="L40">	}</span>
+
+	public String getName() {
+<span class="fc" id="L43">		return name;</span>
+	}
+
+	public void setName(String name) {
+<span class="fc" id="L47">		this.name = name;</span>
+<span class="fc" id="L48">	}</span>
+
+	public Country getCountry() {
+<span class="fc" id="L51">		return country;</span>
+	}
+
+	public void setCountry(Country country) {
+<span class="fc" id="L55">		this.country = country;</span>
+<span class="fc" id="L56">	}</span>
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>spring-jpa-jersey (13/03/2018 00:15:51)</div></body></html>

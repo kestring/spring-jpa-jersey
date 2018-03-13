@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>CountryRepositoryTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">spring-jpa-jersey (13/03/2018 00:15:51)</a> &gt; <a href="../../index.html" class="el_group">spring-jpa-jersey</a> &gt; <a href="../index.html" class="el_bundle">src/test/java</a> &gt; <a href="index.source.html" class="el_package">br.com.cinq.spring.data.repository.test</a> &gt; <span class="el_source">CountryRepositoryTest.java</span></div><h1>CountryRepositoryTest.java</h1><pre class="source lang-java linenums">package br.com.cinq.spring.data.repository.test;
+
+import java.util.List;
+
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+//import org.springframework.boot.test.IntegrationTest;
+//import org.springframework.boot.test.SpringApplicationConfiguration;
+//import org.springframework.boot.test.WebIntegrationTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import br.com.cinq.spring.data.sample.application.Application;
+import br.com.cinq.spring.data.sample.entity.Country;
+import br.com.cinq.spring.data.sample.repository.CountryRepository;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+//@SpringApplicationConfiguration(classes = Application.class)
+//@WebIntegrationTest(randomPort = true)
+//@IntegrationTest(&quot;server.port=9000&quot;)
+@SpringBootTest(classes = Application.class,webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@ActiveProfiles(&quot;unit&quot;)
+<span class="fc" id="L26">public class CountryRepositoryTest {</span>
+
+    @Autowired
+    private CountryRepository dao;
+
+    @Test
+    public void testGelAllCountries() {
+
+<span class="fc" id="L34">        Assert.assertNotNull(dao);</span>
+
+<span class="fc" id="L36">        long count = dao.count();</span>
+
+<span class="pc bpc" id="L38" title="1 of 2 branches missed.">        Assert.assertTrue(count &gt; 0);</span>
+
+<span class="fc" id="L40">        List&lt;Country&gt; countries = dao.findAll();</span>
+
+<span class="fc" id="L42">        Assert.assertEquals((int) count, countries.size());</span>
+<span class="fc" id="L43">    }</span>
+
+    @Test
+    public void testFindOneCountry() {
+
+<span class="fc" id="L48">        Assert.assertNotNull(dao);</span>
+
+<span class="fc" id="L50">        List&lt;Country&gt; countries = dao.findLikeName(&quot;Fra&quot;);</span>
+
+<span class="fc" id="L52">        Assert.assertEquals(1, countries.size());</span>
+
+<span class="fc" id="L54">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>spring-jpa-jersey (13/03/2018 00:15:51)</div></body></html>
