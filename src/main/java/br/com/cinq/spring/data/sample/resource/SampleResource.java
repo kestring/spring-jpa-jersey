@@ -24,14 +24,10 @@ public class SampleResource {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getCitiesByCountryName() {
-		//@QueryParam("country") @DefaultValue("") String countryName
-		//List<City> listCities = this.cityRepository.findByCountryNameLike(countryName);
-		List<City> listCities = this.cityRepository.findAll();
-		if(listCities != null) {
-			return Response.ok().entity(listCities).build();
-		}
-		return Response.status(Response.Status.NOT_FOUND).build();
+	public Response getCitiesByCountryName(@QueryParam("country") @DefaultValue("") String countryName) {
+		List<City> listCities = this.cityRepository.findByCountryNameLike(countryName);
+		return Response.ok().entity(listCities).build();
+//		return Response.status(Response.Status.NOT_FOUND).build();
 	}
 	
 	@GET

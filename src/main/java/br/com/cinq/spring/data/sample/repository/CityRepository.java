@@ -15,8 +15,8 @@ public interface CityRepository extends JpaRepository<City, Integer>{
 	
 	public City findByName(String name);
 	
-	@Query("Select a from City a Where a.country.name like name ")
-	public List<City> findByCountryNameLike(String name);
+	@Query("Select a from City a Where a.country.name like %:country% ")
+	public List<City> findByCountryNameLike(@Param("country") String country);
 	
 	@Query("select c from City c left join fetch c.country ct where ct.id = :#{#country.id}")
 	public List<City> findByCountry(@Param("country")Country country);
